@@ -153,6 +153,24 @@
     </tbody>
   </table></div>
 
+  <!-- ===================== ДРУГИЕ КАНАЛЫ ===================== -->
+  <h2 class="sec"><span class="dot db"></span>Другие билетки Риги — где ещё искать лиды</h2>
+  <div class="card"><table>
+    <thead><tr><th>Канал</th><th class="c">Соб</th><th>Платформ. пиксель</th><th>Свой пиксель орга?</th><th class="c">CAPI</th><th>Вывод</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>bezrindas.lv</td><td class="c">68</td><td class="mono">330789294305696</td><td>✅ да <span class="mut">(Rīgas cirks: свой 485…)</span></td><td class="c"><span class="x">нет</span></td><td class="mut"><b>адресуем без миграции</b> · малые театры/клубы/цирк/музеи</td></tr>
+      <tr class="hl"><td>mct.lv <span class="mut">(Рижский рус. театр)</span></td><td class="c">24</td><td>—</td><td>свой <span class="mono">257086113763863</span> + свой GTM</td><td class="c"><span class="x">нет</span></td><td class="mut">свой сайт · <b>адресуем</b></td></tr>
+      <tr class="hl"><td>lelluteatris.lv <span class="mut">(Кукольный)</span></td><td class="c">18</td><td>—</td><td>свой сайт</td><td class="c"><span class="q">?</span></td><td class="mut">цель (поток детских · рекуррент)</td></tr>
+      <tr class="warn"><td>Bilešu Paradīze</td><td class="c">165</td><td class="mono">297… + 487…</td><td><span class="x">НЕТ — заперто</span></td><td class="c"><span class="x">нет</span></td><td class="mut">самый большой канал · но нужна <b>миграция</b></td></tr>
+      <tr><td>TicketShop + ticketbest</td><td class="c">81+</td><td>да</td><td>да</td><td class="c"><span style="color:#23a05b;font-weight:600">mpc CAPI</span></td><td class="mut">накрыты платформой · <b>плохие цели</b></td></tr>
+      <tr><td>Опера / арены <span class="mut">(Xiaomi, Ķīpsala)</span></td><td class="c">~20</td><td>—</td><td>—</td><td class="c">—</td><td class="mut">гос/большие · мимо</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note">
+    <b>Матрица решает адресуемость.</b> Цель = «свой пиксель поставить можно, а server-side нет» → есть что продать (server-side + измеренная реклама). Таких каналов много: <b>bezrindas</b> (68, малые площадки), <b>mct / lelluteatris</b> (свои сайты театров), <b>Fienta-браузерные орги</b>, мелкие промоутеры (Прямая Речь, WHF, Театр Сна). <b>Bilešu Paradīze</b> (165, крупнейший) — пиксель орга нельзя → только через миграцию. <b>TicketShop / ticketbest</b> уже с платформенным Meta CAPI (`mpc…run.app`) → плохие цели. Разбор 168 «нестандартных» ссылок → <b>90 событий-целей</b> (файл <span class="mono">_168_analysis.csv</span>): МЧТ, Кукольный, Dramaturgu/Dirty Deal театры, Rīgas cirks, клубы (Kaņepes/MASA/K.Suns/Depo/Rocket Bar), музеи.
+  </div>
+
   <div class="foot">
     <b>Итог (server-side / CAPI).</b> <b>Fienta:</b> только у <b>okoncert</b> и <b>Curiosophy</b> — общий Stape-шлюз <span class="mono">capig.stape.*</span> (opt-in); остальные Fienta-орги — голый браузер. <b>TicketShop:</b> <b>платформенный Meta CAPI на ВСЕХ событиях</b> через <span class="mono">mpc…is5qnl632q.run.app/events</span> (общий вендор с ticketbest; перехват POST = настоящий CAPI с дедупом по event_id, суммой и external_id) → TicketShop накрыт server-side ЛУЧШЕ большинства Fienta-оргов. <b>Урок:</b> <span class="mono">cdl=API_unavailable</span> слеп к серверу (ошибался трижды) — server-side ищем ТОЛЬКО по домену-шлюзу в Network (capig.stape / mpc.run.app / stape.io / madgicx). Свой GTM — трое: Curiosophy, Braucam Kopā (Fienta), TOURINGTUNES (TicketShop). Greenfield (мерят ноль) — 47 рижских оргов. TicketShop разрешает пиксель орга (доказано 6 кейсами), миграция не нужна. ВАЖНО про пробел: Прямая Речь (org PRYAMAYA на Fienta) в базе ЕСТЬ, но в Fienta-орги не попала — её <span class="mono">ticket_url=pryamaya.eu</span> (свой домен со встроенным Fienta-чекаутом), а фильтр шёл по <span class="mono">fienta.com</span>. Таких потенциально много: <b>168 активных событий</b> продаются через нестандартные ссылки (свои домены/эмбеды) — там могут быть ещё скрытые Fienta-орги. Bilešu Paradīze 165 / Bilešu Serviss 66 по пикселям не разбирали.<br>
     Метод: чтение реальных запросов <span class="mono">facebook.com/tr</span> через Performance API + код страниц, в реальном Chrome. Внутренний рабочий документ.
