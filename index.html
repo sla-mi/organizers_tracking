@@ -45,14 +45,14 @@
   <div class="sub">Fienta + TicketShop · проверено в браузере 2026-06-29 · по реальным запросам пикселя и коду страниц</div>
 
   <div class="kpis">
-    <div class="kpi"><span class="n">16</span><span class="l">с пикселем</span></div>
+    <div class="kpi"><span class="n">17</span><span class="l">с пикселем</span></div>
     <div class="kpi"><span class="n">47</span><span class="l">greenfield (Рига)</span></div>
     <div class="kpi"><span class="n">2</span><span class="l">с CAPI (Stape)</span></div>
-    <div class="kpi"><span class="n amb">3</span><span class="l">свой GTM</span></div>
+    <div class="kpi"><span class="n amb">4</span><span class="l">свой GTM</span></div>
   </div>
 
   <!-- ===================== FIENTA ===================== -->
-  <h2 class="sec"><span class="dot dg"></span>FIENTA · пиксель есть (10, все Рига)</h2>
+  <h2 class="sec"><span class="dot dg"></span>FIENTA · пиксель есть (11)</h2>
   <div class="card"><table>
     <thead><tr><th>Орг</th><th class="c">Соб</th><th>Pixel ID</th><th>Установка</th><th class="c">Свой GTM</th><th class="c">CAPI</th><th>Доп.</th></tr></thead>
     <tbody>
@@ -66,6 +66,7 @@
       <tr><td>The Lodge <span class="mut">(Рига, Adminu 4)</span></td><td class="c">1</td><td class="mono">449611909543061 / 957443370425490</td><td>Fienta-стандарт</td><td class="c">—</td><td class="c"><span class="x">нет</span></td><td class="mut">2 пикселя</td></tr>
       <tr><td>RED MIC</td><td class="c">1</td><td class="mono">473241356627987</td><td>Fienta-стандарт</td><td class="c">—</td><td class="c"><span class="x">нет</span></td><td class="mut">+свой GA4, сумма</td></tr>
       <tr class="hl"><td>Curiosophy events</td><td class="c">1</td><td class="mono">1176579573044925</td><td>Fienta-стандарт <b>+ свой GTM</b></td><td class="c"><span class="gtm">GTM-NVWPFTRL</span></td><td class="c"><span style="color:#23a05b;font-weight:600">Stape ✅</span></td><td class="mut">свой GTM + <b>server-side есть</b></td></tr>
+      <tr class="hl"><td>PRYAMAYA <span class="mut">(Прямая Речь, o/31730)</span></td><td class="c">1*</td><td class="mono">2455376891277291</td><td>Fienta-стандарт <b>+ свой GTM</b></td><td class="c"><span class="gtm">GTM-MR3LM7N</span></td><td class="c"><span class="x">нет</span></td><td class="mut">+Яндекс.Метрика · найдена ВНЕ набора (продаёт через embed на pryamaya.eu)</td></tr>
     </tbody>
   </table></div>
 
@@ -153,7 +154,7 @@
   </table></div>
 
   <div class="foot">
-    <b>Итог.</b> Server-side / CAPI — у <b>2 из 16</b>: <b>okoncert</b> и <b>Curiosophy</b> через общий Stape-шлюз (<span class="mono">capig.stape.*</span>, один инстанс — Fienta-платформенный/агентский, включается по орг). У остальных 14 — нет (cdl=API_unavailable + нет домена-шлюза). Важно: <span class="mono">cdl</span> сам по себе Stape НЕ показывает — решает проверка домена-шлюза в Network. Свой GTM — трое: Curiosophy, Braucam Kopā (Fienta), TOURINGTUNES (TicketShop). Greenfield (мерят ноль) — 47 рижских оргов. TicketShop разрешает пиксель орга (доказано 6 кейсами), миграция не нужна. Прямая Речь и подобные — не в нашей базе (продают мимо источников: Bilešu Paradīze 165 / Bilešu Serviss 66 по пикселям не разбирали).<br>
+    <b>Итог.</b> Server-side / CAPI — у <b>2 из 16</b>: <b>okoncert</b> и <b>Curiosophy</b> через общий Stape-шлюз (<span class="mono">capig.stape.*</span>, один инстанс — Fienta-платформенный/агентский, включается по орг). У остальных 14 — нет (cdl=API_unavailable + нет домена-шлюза). Важно: <span class="mono">cdl</span> сам по себе Stape НЕ показывает — решает проверка домена-шлюза в Network. Свой GTM — трое: Curiosophy, Braucam Kopā (Fienta), TOURINGTUNES (TicketShop). Greenfield (мерят ноль) — 47 рижских оргов. TicketShop разрешает пиксель орга (доказано 6 кейсами), миграция не нужна. ВАЖНО про пробел: Прямая Речь (org PRYAMAYA на Fienta) в базе ЕСТЬ, но в Fienta-орги не попала — её <span class="mono">ticket_url=pryamaya.eu</span> (свой домен со встроенным Fienta-чекаутом), а фильтр шёл по <span class="mono">fienta.com</span>. Таких потенциально много: <b>168 активных событий</b> продаются через нестандартные ссылки (свои домены/эмбеды) — там могут быть ещё скрытые Fienta-орги. Bilešu Paradīze 165 / Bilešu Serviss 66 по пикселям не разбирали.<br>
     Метод: чтение реальных запросов <span class="mono">facebook.com/tr</span> через Performance API + код страниц, в реальном Chrome. Внутренний рабочий документ.
   </div>
 </div>
