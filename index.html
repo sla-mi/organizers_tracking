@@ -47,7 +47,7 @@
   <div class="kpis">
     <div class="kpi"><span class="n">16</span><span class="l">с пикселем</span></div>
     <div class="kpi"><span class="n">47</span><span class="l">greenfield (Рига)</span></div>
-    <div class="kpi"><span class="n red">0</span><span class="l">с CAPI / server-side</span></div>
+    <div class="kpi"><span class="n">2</span><span class="l">с CAPI (Stape)</span></div>
     <div class="kpi"><span class="n amb">3</span><span class="l">свой GTM</span></div>
   </div>
 
@@ -56,7 +56,7 @@
   <div class="card"><table>
     <thead><tr><th>Орг</th><th class="c">Соб</th><th>Pixel ID</th><th>Установка</th><th class="c">Свой GTM</th><th class="c">CAPI</th><th>Доп.</th></tr></thead>
     <tbody>
-      <tr><td>okoncert</td><td class="c">8</td><td class="mono">319888538876561</td><td>Fienta-стандарт</td><td class="c">—</td><td class="c"><span class="x">нет</span></td><td class="mut">+свой GA4, сумма</td></tr>
+      <tr class="hl"><td>okoncert</td><td class="c">8</td><td class="mono">319888538876561</td><td>Fienta-стандарт</td><td class="c">—</td><td class="c"><span style="color:#23a05b;font-weight:600">Stape ✅</span></td><td class="mut">+GA4, сумма · <b>server-side есть</b></td></tr>
       <tr><td>M/Darbnīca</td><td class="c">7</td><td class="mono">1447705679171750</td><td>Fienta-стандарт</td><td class="c">—</td><td class="c"><span class="x">нет</span></td><td class="mut">+свой GA4</td></tr>
       <tr><td>Viskija Meistarklases</td><td class="c">7</td><td class="mono">324847924818731</td><td>Fienta-стандарт</td><td class="c">—</td><td class="c"><span class="x">нет</span></td><td></td></tr>
       <tr><td>Farhads Nijozs</td><td class="c">4</td><td class="mono">345341206100179</td><td>Fienta-стандарт</td><td class="c">—</td><td class="c"><span class="x">нет</span></td><td class="mut">на 1 событии PageView не шлёт</td></tr>
@@ -65,12 +65,12 @@
       <tr><td>Riga TechGirls</td><td class="c">1</td><td class="mono">580960017881925</td><td>Fienta-стандарт</td><td class="c">—</td><td class="c"><span class="x">нет</span></td><td></td></tr>
       <tr><td>The Lodge <span class="mut">(Рига, Adminu 4)</span></td><td class="c">1</td><td class="mono">449611909543061 / 957443370425490</td><td>Fienta-стандарт</td><td class="c">—</td><td class="c"><span class="x">нет</span></td><td class="mut">2 пикселя</td></tr>
       <tr><td>RED MIC</td><td class="c">1</td><td class="mono">473241356627987</td><td>Fienta-стандарт</td><td class="c">—</td><td class="c"><span class="x">нет</span></td><td class="mut">+свой GA4, сумма</td></tr>
-      <tr class="hl"><td>Curiosophy events</td><td class="c">1</td><td class="mono">1176579573044925</td><td>Fienta-стандарт <b>+ свой GTM</b></td><td class="c"><span class="gtm">GTM-NVWPFTRL</span></td><td class="c"><span class="x">нет</span></td><td class="mut">единственный со своим GTM</td></tr>
+      <tr class="hl"><td>Curiosophy events</td><td class="c">1</td><td class="mono">1176579573044925</td><td>Fienta-стандарт <b>+ свой GTM</b></td><td class="c"><span class="gtm">GTM-NVWPFTRL</span></td><td class="c"><span style="color:#23a05b;font-weight:600">Stape ✅</span></td><td class="mut">свой GTM + <b>server-side есть</b></td></tr>
     </tbody>
   </table></div>
 
   <div class="note">
-    <b>Как читать установку Fienta.</b> «Fienta-стандарт» = орг просто вписал Pixel ID в поле Fienta; в запросе виден кастомный dedup-ключ <span class="mono">eid=ob3_plugin-set_…</span> и только Fienta-контейнер <span class="mono">GTM-MN84VTD</span>. Лишний <span class="mono">GTM-XXXX</span> = свой GTM орга (гибкость, можно навесить серверную часть). <b>CAPI/server-side</b> напрямую из браузера не виден; косвенный признак — <span class="mono">cdl=API_unavailable</span> — стоит у всех 10 → серверной части нет ни у кого. «Свой GA4» (отдельный <span class="mono">G-XXXX</span>) — лишь признак, что орг сам лазил в настройки; на качество не влияет. Сумма+валюта и хешированный email появляются глубже по воронке (AddToCart), на PageView их обычно нет — но для нашего герой-показателя «цена за бронь» сумма второстепенна.
+    <b>Как читать установку Fienta.</b> «Fienta-стандарт» = орг просто вписал Pixel ID в поле Fienta; в запросе виден кастомный dedup-ключ <span class="mono">eid=ob3_plugin-set_…</span> и только Fienta-контейнер <span class="mono">GTM-MN84VTD</span>. Лишний <span class="mono">GTM-XXXX</span> = свой GTM орга (гибкость, можно навесить серверную часть). <b>CAPI/server-side</b> ловится по домену-шлюзу в Network: у <b>okoncert и Curiosophy</b> грузится <span class="mono">capig.stape.*</span> (Stape CAPI Gateway) → у них server-side ЕСТЬ. <span class="mono">cdl=API_unavailable</span> стоит у всех 10, но он отдельный Stape-шлюз НЕ видит — поэтому решает именно проверка домена, а не cdl. «Свой GA4» (отдельный <span class="mono">G-XXXX</span>) — лишь признак, что орг сам лазил в настройки; на качество не влияет. Сумма+валюта и хешированный email появляются глубже по воронке (AddToCart), на PageView их обычно нет — но для нашего герой-показателя «цена за бронь» сумма второстепенна.
   </div>
 
   <h2 class="sec"><span class="dot da"></span>FIENTA · greenfield (22, Рига) — мерят ноль своего</h2>
@@ -153,7 +153,7 @@
   </table></div>
 
   <div class="foot">
-    <b>Итог.</b> Server-side / CAPI — нет ни у одного из 16 оргов с пикселем (везде <span class="mono">cdl=API_unavailable</span>) → универсальный незакрытый пробел. Свой GTM — только трое: Curiosophy, Braucam Kopā (Fienta), TOURINGTUNES (TicketShop). Greenfield (мерят ноль) — 47 рижских оргов. TicketShop разрешает пиксель орга (доказано 6 кейсами), миграция не нужна. Прямая Речь и подобные — не в нашей базе (продают мимо источников: Bilešu Paradīze 165 / Bilešu Serviss 66 по пикселям не разбирали).<br>
+    <b>Итог.</b> Server-side / CAPI — у <b>2 из 16</b>: <b>okoncert</b> и <b>Curiosophy</b> через общий Stape-шлюз (<span class="mono">capig.stape.*</span>, один инстанс — Fienta-платформенный/агентский, включается по орг). У остальных 14 — нет (cdl=API_unavailable + нет домена-шлюза). Важно: <span class="mono">cdl</span> сам по себе Stape НЕ показывает — решает проверка домена-шлюза в Network. Свой GTM — трое: Curiosophy, Braucam Kopā (Fienta), TOURINGTUNES (TicketShop). Greenfield (мерят ноль) — 47 рижских оргов. TicketShop разрешает пиксель орга (доказано 6 кейсами), миграция не нужна. Прямая Речь и подобные — не в нашей базе (продают мимо источников: Bilešu Paradīze 165 / Bilešu Serviss 66 по пикселям не разбирали).<br>
     Метод: чтение реальных запросов <span class="mono">facebook.com/tr</span> через Performance API + код страниц, в реальном Chrome. Внутренний рабочий документ.
   </div>
 </div>
